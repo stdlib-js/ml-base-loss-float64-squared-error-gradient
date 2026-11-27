@@ -51,14 +51,32 @@ The [squared error loss gradient][squared-error-loss-gradient] is defined as
 
 <!-- /.intro -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/ml-base-loss-float64-squared-error-gradient
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-import squaredErrorGradient from 'https://cdn.jsdelivr.net/gh/stdlib-js/ml-base-loss-float64-squared-error-gradient@esm/index.mjs';
+var squaredErrorGradient = require( '@stdlib/ml-base-loss-float64-squared-error-gradient' );
 ```
 
 #### squaredErrorGradient( x, y, p )
@@ -105,15 +123,10 @@ v = squaredErrorGradient( NaN, NaN, NaN );
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="module">
-
-import uniform from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-array-uniform@esm/index.mjs';
-import logEachMap from 'https://cdn.jsdelivr.net/gh/stdlib-js/console-log-each-map@esm/index.mjs';
-import squaredErrorGradient from 'https://cdn.jsdelivr.net/gh/stdlib-js/ml-base-loss-float64-squared-error-gradient@esm/index.mjs';
+```javascript
+var uniform = require( '@stdlib/random-array-uniform' );
+var logEachMap = require( '@stdlib/console-log-each-map' );
+var squaredErrorGradient = require( '@stdlib/ml-base-loss-float64-squared-error-gradient' );
 
 var x = uniform( 100, -100.0, 100.0, {
     'dtype': 'float64'
@@ -125,10 +138,6 @@ var p = uniform( 100, -100.0, 100.0, {
     'dtype': 'float64'
 });
 logEachMap( 'squaredErrorGradient(%0.4f, %0.4f, %0.4f) = %0.4f', x, y, p, squaredErrorGradient );
-
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -137,7 +146,92 @@ logEachMap( 'squaredErrorGradient(%0.4f, %0.4f, %0.4f) = %0.4f', x, y, p, square
 
 <!-- C interface documentation. -->
 
+* * *
 
+<section class="c">
+
+## C APIs
+
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+
+<section class="intro">
+
+</section>
+
+<!-- /.intro -->
+
+<!-- C usage documentation. -->
+
+<section class="usage">
+
+### Usage
+
+```c
+#include "stdlib/ml/base/loss/float64/squared_error_gradient.h"
+```
+
+#### stdlib_base_float64_squared_error_gradient( x, y, p )
+
+Computes the [squared error loss gradient][squared-error-loss-gradient] with respect to a model parameter.
+
+```c
+double out = stdlib_base_float64_squared_error_gradient( 5.0, -2.0, -1.782 );
+// returns ~1.09
+```
+
+The function accepts the following arguments:
+
+-   **x**: `[in] double` input value.
+-   **y**: `[in] double` true target value.
+-   **p**: `[in] double` predicted value.
+
+```c
+double stdlib_base_float64_squared_error_gradient( const double x, const double y, const double p );
+```
+
+</section>
+
+<!-- /.usage -->
+
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+
+<section class="notes">
+
+</section>
+
+<!-- /.notes -->
+
+<!-- C API usage examples. -->
+
+<section class="examples">
+
+### Examples
+
+```c
+#include "stdlib/ml/base/loss/float64/squared_error_gradient.h"
+#include <stdio.h>
+
+int main( void ) {
+    const double x[] = { -10.0, -9.56, -8.67, -7.78, -6.89, 6.89, 7.78, 8.67, 9.56, 10.0 };
+    const double y[] = { -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
+    const double p[] = { -5.0, -3.89, -2.78, -1.67, -0.56, 0.56, 1.67, 2.78, 3.89, 5.0 };
+
+    double v;
+    int i;
+    for ( i = 0; i < 10; i++ ) {
+        v = stdlib_base_float64_squared_error_gradient( x[ i ], y[ i ], p[ i ] );
+        printf( "squaredErrorGradient(%lf, %lf, %lf) = %lf\n", x[ i ], y[ i ], p[ i ], v );
+    }
+}
+```
+
+</section>
+
+<!-- /.examples -->
+
+</section>
+
+<!-- /.c -->
 
 <section class="references">
 
@@ -162,7 +256,7 @@ logEachMap( 'squaredErrorGradient(%0.4f, %0.4f, %0.4f) = %0.4f', x, y, p, square
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
